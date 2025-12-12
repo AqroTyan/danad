@@ -13,10 +13,17 @@
     .page.active { display: block; }
     #logo { font-size: 40px; text-align: center; margin-top: 40px; }
     #loginBox { margin: 40px auto; width: 280px; padding: 20px; background: #2b2b2b; border-radius: 8px; }
-    input { width: 100%; padding: 10px; margin-top: 10px; border: none; border-radius: 5px; }
+    input { width: 100%; padding: 10px; margin-top: 10px; border: none; border-radius: 5px; color: black; }
     #loginBtn { margin-top: 15px; width: 100%; padding: 12px; background: #4CAF50; border: none; color: white; border-radius: 5px; cursor: pointer; font-size: 16px; }
-    #mapWrapper { width: 100%; height: 500px; overflow: hidden; position: relative; }
-    #mapArea { width: 1200px; height: 1200px; background: #0f0f0f; border: 2px solid #555; position: absolute; touch-action: pan-x pan-y; }
+    #mapControls { display:flex; gap:8px; align-items:center; margin-bottom:10px; flex-wrap:wrap; }
+    .floorBtn { padding:8px 12px; border-radius:6px; border:1px solid #666; background:#444; color:white; cursor:pointer; font-weight:bold; }
+    .floorBtn.active { background:#5a9; color:black; border-color:#3c6; }
+    .myFloorBtn { padding:6px 10px; border-radius:6px; border:1px dashed #888; background:#222; color:white; cursor:pointer; }
+
+    #mapWrapper { width: 100%; height: 500px; overflow: hidden; position: relative; border-radius:6px; background:#111; }
+    /* mapArea is the large inner surface that we translate for panning */
+    #mapArea { width: 1600px; height: 1600px; background: #0f0f0f; border: 2px solid #555; position: absolute; left: 0; top: 0; touch-action: none; will-change: transform; }
+
     .playerMarker {
       width: 48px;
       height: 48px;
@@ -26,9 +33,16 @@
       background-position: center;
       border-radius: 50%;
       border: 2px solid white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+      transition: left 200ms linear, top 200ms linear;
     }
+
     #sheetWrapper { width: 100%; overflow: auto; touch-action: pinch-zoom pan-x pan-y; }
     #characterSheet img { width: 100%; max-width: none; }
+
+    /* Small info row */
+    #mapInfo { margin-top:8px; color:#ccc; font-size:14px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+
     @media (max-width: 600px) {
       header { font-size: 18px; padding: 10px; }
       nav button { font-size: 14px; padding: 10px; }
@@ -36,15 +50,14 @@
       #loginBox { width: 90%; padding: 15px; }
       input { padding: 8px; font-size: 14px; }
       #loginBtn { padding: 10px; font-size: 14px; }
-      #mapWrapper { height: 350px; overflow: scroll; }
-      #mapArea { width: 1600px; height: 1600px; }
-      #infoContent { flex-direction: column; align-items: center; }
-      #leftPanel, #sheetWrapper { margin: 10px 0; width: 90%; }
+
+      #mapWrapper { height: 420px; }
+      #mapArea { width: 2000px; height: 2000px; } /* a bit larger for mobile */
     }
   </style>
 </head>
 <body>
-<header>Монопад(демо-версия)</header>
+<header>Монопад (демо-версия)</header>
 <nav>
   <button onclick="openPage('home')" class="active" id="tab_home">Главная</button>
   <button onclick="openPage('map')" id="tab_map">Карта</button>
@@ -63,6 +76,25 @@
 
 <div class="page" id="map">
   <h2>Карта</h2>
+
+  <!-- Управления этажами (вид) и управления своим этажом -->
+  <div id="mapControls">
+    <!-- большие иконки / кнопки этажей (view) -->
+    <button class="floorBtn" id="view_floor_1">1 этаж</button>
+    <button class="floorBtn" id="view_floor_2">2 этаж</button>
+    <button class="floorBtn" id="view_floor_b">Подвал</button>
+
+    <!-- разделитель и управление своим этажом -->
+    <div style="width:12px"></div>
+    <span style="color:#ccc">Мой этаж:</span>
+    <button class="myFloorBtn" id="set_floor_1">1</button>
+    <button class="myFloorBtn" id="set_floor_2">2</button>
+    <button class="myFloorBtn" id="set_floor_b">B</button>
+
+    <div style="flex:1"></div>
+    <div id="mapInfo">Просмотр: <strong id="viewFloorLabel">1 этаж</strong> · Мой этаж: <strong id="myFloorLabel">не выбран</strong></div>
+  </div>
+
   <div id="mapWrapper">
     <div id="mapArea"></div>
   </div>
@@ -87,23 +119,52 @@
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
 <script>
-  // Конфиг Firebase
-  const firebaseConfig = {
-    apiKey: "AIzaSyBiHWlMDeUv5FmPh4Aqv7aKCGHFbco5YIM",
-    authDomain: "dandd-592cb.firebaseapp.com",
-    databaseURL: "https://dandd-592cb-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "dandd-592cb",
-    storageBucket: "dandd-592cb.appspot.com",
-    messagingSenderId: "354514314558",
-    appId: "1:354514314558:web:e81c95d0ae2a4c5b9bb86f",
-    measurementId: "G-2KGQMKJP4X"
-  };
-  firebase.initializeApp(firebaseConfig);
-  const database = firebase.database();
+/* =======================
+   CONFIG — вставь свои URL карт для этажей
+   Пример:
+   mapImages[1] = 'https://site.com/floor1.png';
+   mapImages[2] = 'https://site.com/floor2.png';
+   mapImages['b'] = 'https://site.com/basement.png';
+   Оставь пустые строки если хочешь вставить позже.
+   ======================= */
+const mapImages = {
+  1: "",      // <- вставь ссылку на изображение первого этажа
+  2: "",      // <- вставь ссылку на изображение второго этажа
+  b: ""       // <- вставь ссылку на изображение подвала (ключ 'b' = basement)
+};
 
-  let currentUser = null;
+/* ============ Firebase init (твои данные уже стояли) ============ */
+const firebaseConfig = {
+  apiKey: "AIzaSyBiHWlMDeUv5FmPh4Aqv7aKCGHFbco5YIM",
+  authDomain: "dandd-592cb.firebaseapp.com",
+  databaseURL: "https://dandd-592cb-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "dandd-592cb",
+  storageBucket: "dandd-592cb.appspot.com",
+  messagingSenderId: "354514314558",
+  appId: "1:354514314558:web:e81c95d0ae2a4c5b9bb86f",
+  measurementId: "G-2KGQMKJP4X"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
 
-  const accounts = [
+/* ============ Переменные состояния ============ */
+let currentUser = null;      // username
+let viewFloor = 1;           // какой этаж показываем (1 / 2 / 'b')
+let myFloor = null;          // этаж текущего игрока (1 / 2 / 'b') — синхронизируется в базе
+const mapWrapper = document.getElementById('mapWrapper');
+const mapArea = document.getElementById('mapArea');
+
+/* Параметры панинга (перетаскивания) */
+let offsetX = 0, offsetY = 0;
+let isDragging = false;
+let dragStartX = 0, dragStartY = 0;
+let startOffsetX = 0, startOffsetY = 0;
+
+/* Словарь маркеров DOM по username */
+const markers = {};
+
+/* Аккаунты — оставил твои данные, можно редактировать */
+const accounts = [
     { username: "цумуги", displayName: "Цумуги Широгане", password: "1111", color: "blue", avatar: "https://i.postimg.cc/MKDL3Brk/IMG-20251212-023652-731.jpg", description: "", sheet: "" },
     { username: "нагито", displayName: "Нагито Комаэда", password: "1111", color: "white", avatar: "", description: "", sheet: "" },
     { username: "миу", displayName: "Миу Ирума", password: "1111", color: "pink", avatar: "", description: "", sheet: "" },
@@ -194,59 +255,256 @@
     { username: "макото", displayName: "Макото Наэги", password: "1111", color: "lightbrown", avatar: "", description: "", sheet: "" }
   ];
 
-  function openPage(page) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById(page).classList.add('active');
-    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab_' + page).classList.add('active');
+/* ================= UI helpers ================= */
+function setViewFloorLabel() {
+  const lbl = document.getElementById('viewFloorLabel');
+  lbl.innerText = viewFloor === 'b' ? 'Подвал' : (viewFloor === 1 ? '1 этаж' : '2 этаж');
+  document.querySelectorAll('.floorBtn').forEach(b => b.classList.remove('active'));
+  if (viewFloor === 1) document.getElementById('view_floor_1').classList.add('active');
+  else if (viewFloor === 2) document.getElementById('view_floor_2').classList.add('active');
+  else document.getElementById('view_floor_b').classList.add('active');
+}
+function setMyFloorLabel() {
+  const lbl = document.getElementById('myFloorLabel');
+  lbl.innerText = myFloor === null ? 'не выбран' : (myFloor === 'b' ? 'Подвал' : (myFloor === 1 ? '1' : '2'));
+}
+
+/* ================= Floor buttons ================= */
+document.getElementById('view_floor_1').addEventListener('click', () => { viewFloor = 1; applyMapBackground(); setViewFloorLabel(); refreshMarkersVisibility(); });
+document.getElementById('view_floor_2').addEventListener('click', () => { viewFloor = 2; applyMapBackground(); setViewFloorLabel(); refreshMarkersVisibility(); });
+document.getElementById('view_floor_b').addEventListener('click', () => { viewFloor = 'b'; applyMapBackground(); setViewFloorLabel(); refreshMarkersVisibility(); });
+
+document.getElementById('set_floor_1').addEventListener('click', () => { if (!currentUser) return alert('Войдите в аккаунт'); setMyFloorForUser(1); });
+document.getElementById('set_floor_2').addEventListener('click', () => { if (!currentUser) return alert('Войдите в аккаунт'); setMyFloorForUser(2); });
+document.getElementById('set_floor_b').addEventListener('click', () => { if (!currentUser) return alert('Войдите в аккаунт'); setMyFloorForUser('b'); });
+
+/* ================= Map background (image overlay) ================= */
+function applyMapBackground() {
+  const img = mapImages[viewFloor] || '';
+  if (img) {
+    mapArea.style.backgroundImage = `url('${img}')`;
+    mapArea.style.backgroundSize = 'contain';
+    mapArea.style.backgroundRepeat = 'no-repeat';
+    mapArea.style.backgroundPosition = 'center';
+  } else {
+    mapArea.style.backgroundImage = '';
+    mapArea.style.backgroundColor = '#0f0f0f';
   }
+}
 
-  function login() {
-    const log = login_input.value.trim();
-    const pass = pass_input.value.trim();
-    const acc = accounts.find(a => a.username === log && a.password === pass);
-    if (!acc) { login_status.style.color = '#f55'; login_status.innerText = "Неверные данные"; return; }
+/* ================= Pan / Drag (desktop and touch) ================= */
+function updateMapTransform() {
+  mapArea.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+}
 
-    currentUser = acc.username;
-    document.getElementById('logo').innerText = acc.displayName;
-    document.getElementById('infoBox').innerText = `Вы вошли как: ${acc.displayName}`;
-    document.getElementById('avatarBox').innerHTML = `<img src='${acc.avatar}' alt='Аватар'>`;
-    document.getElementById('descriptionBox').innerText = acc.description;
-    document.getElementById('characterSheet').innerHTML = `<img src='${acc.sheet}' alt='Лист персонажа'>`;
-
-    login_status.style.color = '#5f5';
-    login_status.innerText = "Успешный вход";
-    openPage('map');
-    spawnPlayerMarkers();
+/* Mouse */
+mapWrapper.addEventListener('mousedown', (e) => {
+  // only start dragging if clicked on empty space or background (not on marker)
+  if (e.target.classList.contains('playerMarker')) return;
+  isDragging = true;
+  dragStartX = e.clientX;
+  dragStartY = e.clientY;
+  startOffsetX = offsetX;
+  startOffsetY = offsetY;
+  mapWrapper.style.cursor = 'grabbing';
+});
+window.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+  const dx = e.clientX - dragStartX;
+  const dy = e.clientY - dragStartY;
+  offsetX = startOffsetX + dx;
+  offsetY = startOffsetY + dy;
+  updateMapTransform();
+});
+window.addEventListener('mouseup', () => {
+  if (isDragging) {
+    isDragging = false;
+    mapWrapper.style.cursor = 'default';
   }
+});
 
-  function spawnPlayerMarkers() {
-    const map = document.getElementById('mapArea');
-    map.innerHTML = '';
-    accounts.forEach(acc => {
-      const marker = document.createElement('div');
-      marker.className = 'playerMarker';
-      marker.style.backgroundImage = `url('${acc.avatar}')`;
-      // Читаем координаты из Firebase
-      firebase.database().ref('positions/' + acc.username).once('value', snap => {
-        const pos = snap.val() || { x: 150, y: 150 };
-        marker.style.left = pos.x + 'px';
-        marker.style.top = pos.y + 'px';
-      });
-      map.appendChild(marker);
-    });
+/* Touch */
+mapWrapper.addEventListener('touchstart', (ev) => {
+  if (ev.touches.length === 1) {
+    const t = ev.touches[0];
+    isDragging = true;
+    dragStartX = t.clientX;
+    dragStartY = t.clientY;
+    startOffsetX = offsetX;
+    startOffsetY = offsetY;
   }
+});
+mapWrapper.addEventListener('touchmove', (ev) => {
+  if (!isDragging || ev.touches.length !== 1) return;
+  const t = ev.touches[0];
+  const dx = t.clientX - dragStartX;
+  const dy = t.clientY - dragStartY;
+  offsetX = startOffsetX + dx;
+  offsetY = startOffsetY + dy;
+  updateMapTransform();
+});
+mapWrapper.addEventListener('touchend', () => { isDragging = false; });
 
-  const mapArea = document.getElementById('mapArea');
-  mapArea.addEventListener('click', e => {
-    if (!currentUser) return;
-    const rect = mapArea.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    // Сохраняем координаты в Firebase
-    firebase.database().ref('positions/' + currentUser).set({ x, y });
-    spawnPlayerMarkers();
+/* ================= Marker handling (realtime) ================= */
+
+/*
+ Structure in DB:
+ positions: {
+   username1: { x: 123, y: 234, floor: 1 },
+   username2: { x: 400, y: 500, floor: 'b' },
+   ...
+ }
+*/
+
+function ensureMarkerElement(username, acc) {
+  if (markers[username]) return markers[username];
+  const el = document.createElement('div');
+  el.className = 'playerMarker';
+  el.dataset.user = username;
+  el.title = acc ? acc.displayName : username;
+  el.style.backgroundImage = acc && acc.avatar ? `url('${acc.avatar}')` : `radial-gradient(circle at 30% 30%, #fff 0, ${acc && acc.color ? acc.color : '#888'} 60%)`;
+  // click on marker -> show profile in info page
+  el.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const user = username;
+    const accObj = accounts.find(a => a.username === user);
+    if (accObj) {
+      // show info
+      openPage('info');
+      document.getElementById('logo').innerText = accObj.displayName;
+      document.getElementById('infoBox').innerText = `Просмотр: ${accObj.displayName}`;
+      document.getElementById('avatarBox').innerHTML = `<img src='${accObj.avatar || ""}' alt='Аватар'>`;
+      document.getElementById('descriptionBox').innerText = accObj.description || '';
+      document.getElementById('characterSheet').innerHTML = accObj.sheet ? `<img src='${accObj.sheet}'>` : '';
+    }
   });
+  mapArea.appendChild(el);
+  markers[username] = el;
+  return el;
+}
+
+/* Listen to all positions changes in realtime */
+const positionsRef = db.ref('positions');
+positionsRef.on('value', (snap) => {
+  const data = snap.val() || {};
+  // update markers or create them
+  Object.keys(data).forEach(username => {
+    const pos = data[username];
+    const acc = accounts.find(a => a.username === username);
+    const el = ensureMarkerElement(username, acc);
+    // place marker only if floor matches viewFloor
+    if (pos && pos.x != null && pos.y != null) {
+      el.style.left = pos.x + 'px';
+      el.style.top = pos.y + 'px';
+      el.dataset.floor = pos.floor ?? 1;
+    } else {
+      el.style.left = '150px';
+      el.style.top = '150px';
+      el.dataset.floor = pos && pos.floor ? pos.floor : 1;
+    }
+    // visibility handled separately
+  });
+  // also ensure markers exist for accounts that may not have DB entry yet
+  accounts.forEach(a => {
+    if (!markers[a.username]) ensureMarkerElement(a.username, a);
+  });
+  refreshMarkersVisibility();
+});
+
+/* Refresh visibility according to viewFloor (show only markers whose stored floor == viewFloor) */
+function refreshMarkersVisibility() {
+  Object.keys(markers).forEach(username => {
+    const el = markers[username];
+    const userFloor = el.dataset.floor || 1;
+    // convert to comparable values: 'b' for basement
+    const matches = (String(userFloor) === String(viewFloor));
+    el.style.display = matches ? 'block' : 'none';
+  });
+}
+
+/* Save position for current user (x,y) and maintain floor (if not set yet, use myFloor or 1) */
+function savePositionForCurrentUser(x, y, floor = null) {
+  if (!currentUser) return;
+  // determine floor: use provided floor, else existing myFloor, else 1
+  const realFloor = (floor !== null && floor !== undefined) ? floor : (myFloor !== null ? myFloor : 1);
+  db.ref('positions/' + currentUser).set({ x: Math.round(x), y: Math.round(y), floor: realFloor });
+}
+
+/* Set myFloor for current user (update DB positions/currentUser.floor preserving x,y if exist) */
+function setMyFloorForUser(newFloor) {
+  if (!currentUser) return;
+  const pRef = db.ref('positions/' + currentUser);
+  pRef.once('value').then(snap => {
+    const cur = snap.val() || {};
+    const x = cur.x != null ? cur.x : 150;
+    const y = cur.y != null ? cur.y : 150;
+    pRef.set({ x, y, floor: newFloor });
+    myFloor = newFloor;
+    setMyFloorLabel();
+    // If the player moved floors, optionally hide their marker on other floors (handled by realtime listener)
+    refreshMarkersVisibility();
+  });
+}
+
+/* ================= Click on map -> place marker for currentUser with coords adjusted for pan ================= */
+mapWrapper.addEventListener('click', function(e) {
+  // if clicked on marker, ignore (marker handles click)
+  if (e.target.classList.contains('playerMarker')) return;
+  if (!currentUser) { alert('Войдите в аккаунт чтобы перемещаться'); return; }
+  const rect = mapWrapper.getBoundingClientRect();
+  // map coordinate = mouse position inside wrapper minus current offset (pan)
+  const x = e.clientX - rect.left - offsetX;
+  const y = e.clientY - rect.top  - offsetY;
+  savePositionForCurrentUser(x, y); // uses myFloor if set
+});
+
+/* ================= Login / UI ================= */
+function openPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(page).classList.add('active');
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab_' + page).classList.add('active');
+}
+
+function login() {
+  const log = document.getElementById('login_input').value.trim();
+  const pass = document.getElementById('pass_input').value.trim();
+  const acc = accounts.find(a => a.username === log && a.password === pass);
+  if (!acc) {
+    document.getElementById('login_status').style.color = '#f55';
+    document.getElementById('login_status').innerText = "Неверные данные";
+    return;
+  }
+  currentUser = acc.username;
+  // read user's stored floor to update myFloor var
+  db.ref('positions/' + currentUser).once('value').then(snap => {
+    const pos = snap.val();
+    myFloor = pos && pos.floor !== undefined ? pos.floor : null;
+    setMyFloorLabel();
+  });
+  document.getElementById('logo').innerText = acc.displayName;
+  document.getElementById('infoBox').innerText = `Вы вошли как: ${acc.displayName}`;
+  document.getElementById('avatarBox').innerHTML = acc.avatar ? `<img src='${acc.avatar}' alt='Аватар' style="max-width:100%;">` : '';
+  document.getElementById('descriptionBox').innerText = acc.description || '';
+  document.getElementById('characterSheet').innerHTML = acc.sheet ? `<img src='${acc.sheet}' alt='Лист персонажа'>` : '';
+  document.getElementById('login_status').style.color = '#5f5';
+  document.getElementById('login_status').innerText = "Успешный вход";
+  openPage('map');
+  // make sure view label and background updated
+  setViewFloorLabel(); setMyFloorLabel(); applyMapBackground();
+  // load markers (listener already set)
+}
+
+/* ================= Init UI ================= */
+setViewFloorLabel();
+setMyFloorLabel();
+applyMapBackground();
+
+/* Ensure markers for all existing accounts are created even before DB has data */
+accounts.forEach(a => ensureMarkerElement(a.username, a));
+
+/* On first load, refresh markers visibility */
+refreshMarkersVisibility();
 
 </script>
 </body>
