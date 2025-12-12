@@ -15,12 +15,8 @@
     #loginBox { margin: 40px auto; width: 280px; padding: 20px; background: #2b2b2b; border-radius: 8px; }
     input { width: 100%; padding: 10px; margin-top: 10px; border: none; border-radius: 5px; }
     #loginBtn { margin-top: 15px; width: 100%; padding: 12px; background: #4CAF50; border: none; color: white; border-radius: 5px; cursor: pointer; font-size: 16px; }
-
-    /* Карта */
     #mapWrapper { width: 100%; height: 500px; overflow: hidden; position: relative; }
     #mapArea { width: 1200px; height: 1200px; background: #0f0f0f; border: 2px solid #555; position: absolute; touch-action: pan-x pan-y; }
-
-    /* Маркеры */
     .playerMarker {
       width: 48px;
       height: 48px;
@@ -31,11 +27,8 @@
       border-radius: 50%;
       border: 2px solid white;
     }
-
-    /* Персонаж */
     #sheetWrapper { width: 100%; overflow: auto; touch-action: pinch-zoom pan-x pan-y; }
     #characterSheet img { width: 100%; max-width: none; }
-
     @media (max-width: 600px) {
       header { font-size: 18px; padding: 10px; }
       nav button { font-size: 14px; padding: 10px; }
