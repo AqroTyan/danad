@@ -52,7 +52,7 @@
   </style>
 </head>
 <body>
-<header>Онлайн-игра (демо-версия)</header>
+<header>Монопад(демо-версия)</header>
 <nav>
   <button onclick="openPage('home')" class="active" id="tab_home">Главная</button>
   <button onclick="openPage('map')" id="tab_map">Карта</button>
