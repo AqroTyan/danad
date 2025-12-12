@@ -364,20 +364,7 @@ function ensureMarkerElement(username, acc) {
   el.title = acc ? acc.displayName : username;
   el.style.backgroundImage = acc && acc.avatar ? `url('${acc.avatar}')` : `radial-gradient(circle at 30% 30%, #fff 0, ${acc && acc.color ? acc.color : '#888'} 60%)`;
   // click on marker -> show profile in info page
-  el.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const user = username;
-    const accObj = accounts.find(a => a.username === user);
-    if (accObj) {
-      // show info
-      openPage('info');
-      document.getElementById('logo').innerText = accObj.displayName;
-      document.getElementById('infoBox').innerText = `Просмотр: ${accObj.displayName}`;
-      document.getElementById('avatarBox').innerHTML = `<img src='${accObj.avatar || ""}' alt='Аватар'>`;
-      document.getElementById('descriptionBox').innerText = accObj.description || '';
-      document.getElementById('characterSheet').innerHTML = accObj.sheet ? `<img src='${accObj.sheet}'>` : '';
-    }
-  });
+ 
   mapArea.appendChild(el);
   markers[username] = el;
   return el;
