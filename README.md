@@ -1,58 +1,62 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Игровой сайт</title>
-<style>
-body { margin: 0; font-family: Arial, sans-serif; background: #1a1a1a; color: white; }
-header { background: #222; padding: 15px; text-align: center; font-size: 22px; font-weight: bold; }
-nav { display: flex; background: #333; }
-nav button { flex: 1; padding: 15px; background: #333; border: none; color: white; font-size: 18px; cursor: pointer; }
-nav button.active { background: #444; }
-.page { display: none; padding: 20px; }
-.page.active { display: block; }
-#logo { font-size: 40px; text-align: center; margin-top: 40px; }
-#loginBox { margin: 40px auto; width: 280px; padding: 20px; background: #2b2b2b; border-radius: 8px; }
-input { width: 100%; padding: 10px; margin-top: 10px; border: none; border-radius: 5px; }
-#loginBtn { margin-top: 15px; width: 100%; padding: 12px; background: #4CAF50; border: none; color: white; border-radius: 5px; cursor: pointer; font-size: 16px; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Игровой сайт</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #1a1a1a; color: white; }
+    header { background: #222; padding: 15px; text-align: center; font-size: 22px; font-weight: bold; }
+    nav { display: flex; background: #333; }
+    nav button { flex: 1; padding: 15px; background: #333; border: none; color: white; font-size: 18px; cursor: pointer; }
+    nav button.active { background: #444; }
+    .page { display: none; padding: 20px; }
+    .page.active { display: block; }
+    #logo { font-size: 40px; text-align: center; margin-top: 40px; }
+    #loginBox { margin: 40px auto; width: 280px; padding: 20px; background: #2b2b2b; border-radius: 8px; }
+    input { width: 100%; padding: 10px; margin-top: 10px; border: none; border-radius: 5px; }
+    #loginBtn { margin-top: 15px; width: 100%; padding: 12px; background: #4CAF50; border: none; color: white; border-radius: 5px; cursor: pointer; font-size: 16px; }
 
-/* Карта */
-#mapWrapper { width: 100%; height: 500px; overflow: hidden; position: relative; }
-#mapArea { width: 1200px; height: 1200px; background: #0f0f0f; border: 2px solid #555; position: absolute; touch-action: pan-x pan-y; }
+    /* Карта */
+    #mapWrapper { width: 100%; height: 500px; overflow: hidden; position: relative; }
+    #mapArea { width: 1200px; height: 1200px; background: #0f0f0f; border: 2px solid #555; position: absolute; touch-action: pan-x pan-y; }
 
-/* Маркеры как изображения */
-.playerMarker { width: 48px; height: 48px; position: absolute; transform: translate(-50%, -50%); background-size: cover; background-position: center; border-radius: 50%; border: 2px solid white; }
+    /* Маркеры */
+    .playerMarker {
+      width: 48px;
+      height: 48px;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      background-size: cover;
+      background-position: center;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
 
-/* Персонаж */
-#sheetWrapper { width: 100%; overflow: auto; touch-action: pinch-zoom pan-x pan-y; }
-#characterSheet img { width: 100%; max-width: none; }
+    /* Персонаж */
+    #sheetWrapper { width: 100%; overflow: auto; touch-action: pinch-zoom pan-x pan-y; }
+    #characterSheet img { width: 100%; max-width: none; }
 
-/* README блок */
-#readmeWrapper { background: #222; padding: 15px; margin-top: 20px; border-radius: 8px; overflow: auto; }
-
-@media (max-width: 600px) {
-  header { font-size: 18px; padding: 10px; }
-  nav button { font-size: 14px; padding: 10px; }
-  #logo { font-size: 28px; margin-top: 20px; }
-  #loginBox { width: 90%; padding: 15px; }
-  input { padding: 8px; font-size: 14px; }
-  #loginBtn { padding: 10px; font-size: 14px; }
-  #mapWrapper { height: 350px; overflow: scroll; }
-  #mapArea { width: 1600px; height: 1600px; }
-  #infoContent { flex-direction: column; align-items: center; }
-  #leftPanel, #sheetWrapper { margin: 10px 0; width: 90%; }
-}
-</style>
+    @media (max-width: 600px) {
+      header { font-size: 18px; padding: 10px; }
+      nav button { font-size: 14px; padding: 10px; }
+      #logo { font-size: 28px; margin-top: 20px; }
+      #loginBox { width: 90%; padding: 15px; }
+      input { padding: 8px; font-size: 14px; }
+      #loginBtn { padding: 10px; font-size: 14px; }
+      #mapWrapper { height: 350px; overflow: scroll; }
+      #mapArea { width: 1600px; height: 1600px; }
+      #infoContent { flex-direction: column; align-items: center; }
+      #leftPanel, #sheetWrapper { margin: 10px 0; width: 90%; }
+    }
+  </style>
 </head>
 <body>
-
 <header>Онлайн-игра (демо-версия)</header>
 <nav>
   <button onclick="openPage('home')" class="active" id="tab_home">Главная</button>
   <button onclick="openPage('map')" id="tab_map">Карта</button>
   <button onclick="openPage('info')" id="tab_info">Персонаж</button>
-  <button onclick="openPage('readme')" id="tab_readme">README</button>
 </nav>
 
 <div class="page active" id="home">
@@ -86,23 +90,28 @@ input { width: 100%; padding: 10px; margin-top: 10px; border: none; border-radiu
   </div>
 </div>
 
-<div class="page" id="readme">
-  <h2>README</h2>
-  <div id="readmeWrapper">Загрузка README...</div>
-</div>
+<!-- Firebase CDN -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
 <script>
-// --- Страницы ---
-function openPage(page) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById(page).classList.add('active');
-  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab_' + page).classList.add('active');
-}
+  // Конфиг Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyBiHWlMDeUv5FmPh4Aqv7aKCGHFbco5YIM",
+    authDomain: "dandd-592cb.firebaseapp.com",
+    databaseURL: "https://dandd-592cb-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "dandd-592cb",
+    storageBucket: "dandd-592cb.appspot.com",
+    messagingSenderId: "354514314558",
+    appId: "1:354514314558:web:e81c95d0ae2a4c5b9bb86f",
+    measurementId: "G-2KGQMKJP4X"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
 
-// --- Аккаунты ---
-let currentUser = null;
-const accounts = [
+  let currentUser = null;
+
+  const accounts = [
     { username: "цумуги", displayName: "Цумуги Широгане", password: "1111", color: "blue", avatar: "https://i.postimg.cc/MKDL3Brk/IMG-20251212-023652-731.jpg", description: "", sheet: "" },
     { username: "нагито", displayName: "Нагито Комаэда", password: "1111", color: "white", avatar: "", description: "", sheet: "" },
     { username: "миу", displayName: "Миу Ирума", password: "1111", color: "pink", avatar: "", description: "", sheet: "" },
@@ -193,61 +202,60 @@ const accounts = [
     { username: "макото", displayName: "Макото Наэги", password: "1111", color: "lightbrown", avatar: "", description: "", sheet: "" }
   ];
 
-// --- Вход ---
-function login() {
-  const log = login_input.value.trim();
-  const pass = pass_input.value.trim();
-  const acc = accounts.find(a => a.username === log && a.password === pass);
-  if (!acc) { login_status.style.color = '#f55'; login_status.innerText = "Неверные данные"; return; }
+  function openPage(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(page).classList.add('active');
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab_' + page).classList.add('active');
+  }
 
-  currentUser = acc.username;
-  document.getElementById('logo').innerText = acc.displayName;
-  document.getElementById('infoBox').innerText = `Вы вошли как: ${acc.displayName}`;
-  document.getElementById('avatarBox').innerHTML = `<img src='${acc.avatar}' alt='Аватар'>`;
-  document.getElementById('descriptionBox').innerText = acc.description;
-  document.getElementById('characterSheet').innerHTML = `<img src='${acc.sheet}' alt='Лист персонажа'>`;
+  function login() {
+    const log = login_input.value.trim();
+    const pass = pass_input.value.trim();
+    const acc = accounts.find(a => a.username === log && a.password === pass);
+    if (!acc) { login_status.style.color = '#f55'; login_status.innerText = "Неверные данные"; return; }
 
-  login_status.style.color = '#5f5';
-  login_status.innerText = "Успешный вход";
-  openPage('map');
-  spawnPlayerMarkers();
-}
+    currentUser = acc.username;
+    document.getElementById('logo').innerText = acc.displayName;
+    document.getElementById('infoBox').innerText = `Вы вошли как: ${acc.displayName}`;
+    document.getElementById('avatarBox').innerHTML = `<img src='${acc.avatar}' alt='Аватар'>`;
+    document.getElementById('descriptionBox').innerText = acc.description;
+    document.getElementById('characterSheet').innerHTML = `<img src='${acc.sheet}' alt='Лист персонажа'>`;
 
-// --- Карта ---
-function spawnPlayerMarkers() {
-  const map = document.getElementById('mapArea');
-  map.innerHTML = '';
-  accounts.forEach(acc => {
-    const pos = JSON.parse(localStorage.getItem('pos_' + acc.username) || '{}');
-    const marker = document.createElement('div');
-    marker.className = 'playerMarker';
-    marker.style.left = ((pos.x || 150) + 'px');
-    marker.style.top  = ((pos.y || 150) + 'px');
-    marker.style.backgroundImage = `url('${acc.markerImg || acc.avatar}')`;
-    map.appendChild(marker);
+    login_status.style.color = '#5f5';
+    login_status.innerText = "Успешный вход";
+    openPage('map');
+    spawnPlayerMarkers();
+  }
+
+  function spawnPlayerMarkers() {
+    const map = document.getElementById('mapArea');
+    map.innerHTML = '';
+    accounts.forEach(acc => {
+      const marker = document.createElement('div');
+      marker.className = 'playerMarker';
+      marker.style.backgroundImage = `url('${acc.avatar}')`;
+      // Читаем координаты из Firebase
+      firebase.database().ref('positions/' + acc.username).once('value', snap => {
+        const pos = snap.val() || { x: 150, y: 150 };
+        marker.style.left = pos.x + 'px';
+        marker.style.top = pos.y + 'px';
+      });
+      map.appendChild(marker);
+    });
+  }
+
+  const mapArea = document.getElementById('mapArea');
+  mapArea.addEventListener('click', e => {
+    if (!currentUser) return;
+    const rect = mapArea.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    // Сохраняем координаты в Firebase
+    firebase.database().ref('positions/' + currentUser).set({ x, y });
+    spawnPlayerMarkers();
   });
-}
 
-const mapArea = document.getElementById('mapArea');
-mapArea.addEventListener('click', e => {
-  if (!currentUser) return;
-  const rect = mapArea.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-  localStorage.setItem('pos_' + currentUser, JSON.stringify({x, y}));
-  spawnPlayerMarkers();
-});
-
-// --- Загрузка README ---
-fetch('README.md')
-  .then(r => r.text())
-  .then(md => {
-    const html = md
-      .replace(/\n/g, '<br>')
-      .replace(/^(#+)\s(.+)/gm, (_, hashes, title) => `<h${hashes.length}>${title}</h${hashes.length}>`);
-    document.getElementById('readmeWrapper').innerHTML = html;
-  });
 </script>
 </body>
 </html>
-
