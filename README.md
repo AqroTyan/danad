@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
@@ -36,6 +37,25 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.6);
       transition: left 200ms linear, top 200ms linear;
     }
+    .markerAvatar {
+  position: absolute;
+  bottom: 55px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 64px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  border: 2px solid white;
+  display: none;
+  background-color: #000;
+  z-index: 10;
+}
+.playerMarker:hover .markerAvatar {
+  display: block;
+}
+
 
     #sheetWrapper { width: 100%; overflow: auto; touch-action: pinch-zoom pan-x pan-y; }
     #characterSheet img { width: 100%; max-width: none; }
@@ -252,7 +272,8 @@ const accounts = [
     { username: "сония", displayName: "Сония Невермaйнд", password: "1111", color: "lightyellow", avatar: "", description: "", sheet: "" },
     { username: "кируми", displayName: "Кируми Тоджо", password: "1111", color: "darkviolet", avatar: "", description: "", sheet: "" },
     { username: "леон", displayName: "Леон Кувата", password: "1111", color: "orange", avatar: "", description: "", sheet: "" },
-    { username: "макото", displayName: "Макото Наэги", password: "1111", color: "lightbrown", avatar: "", description: "", sheet: "" }
+    { username: "макото", displayName: "Макото Наэги", password: "1111", color: "lightbrown", avatar: "", description: "", sheet: "" },
+    { username: "монокума", displayName: "МОН0КУМА", password: "1111", color: "white", avatar: "", description: "", sheet: "" },
   ];
 
 /* ================= UI helpers ================= */
@@ -363,8 +384,15 @@ function ensureMarkerElement(username, acc) {
   el.dataset.user = username;
   el.title = acc ? acc.displayName : username;
   el.style.backgroundImage = acc && acc.avatar ? `url('${acc.avatar}')` : `radial-gradient(circle at 30% 30%, #fff 0, ${acc && acc.color ? acc.color : '#888'} 60%)`;
+  if (acc && acc.avatar) {
+  const avatarPopup = document.createElement('div');
+  avatarPopup.className = 'markerAvatar';
+  avatarPopup.style.backgroundImage = `url('${acc.avatar}')`;
+  el.appendChild(avatarPopup);
+}
+
   // click on marker -> show profile in info page
- 
+  
   mapArea.appendChild(el);
   markers[username] = el;
   return el;
