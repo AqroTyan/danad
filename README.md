@@ -184,11 +184,11 @@ const markers = {};
 
 /* Аккаунты — оставил твои данные, можно редактировать */
 const accounts = [
-    { username: "цумуги", displayName: "Цумуги Широгане", password: "1111", color: "blue", avatar: "https://i.postimg.cc/MKDL3Brk/IMG-20251212-023652-731.jpg", description: "", sheet: "" },
-    { username: "нагито", displayName: "Нагито Комаэда", password: "1111", color: "white", avatar: "", description: "", sheet: "" },
-    { username: "миу", displayName: "Миу Ирума", password: "1111", color: "pink", avatar: "", description: "", sheet: "" },
-    { username: "каэде", displayName: "Каэде Акаматсу", password: "1111", color: "yellow", avatar: "", description: "", sheet: "" },
-    { username: "рантаро", displayName: "Рантаро Амами", password: "1111",  avatar: "https://i.postimg.cc/XqxgLf7X/IMG-20251212-024217-121.png", description: `Падший паладин.
+    { username: "цумуги", displayName: "Цумуги Широгане", password: "1111", color: "blue", avatar: "https://i.postimg.cc/MKDL3Brk/IMG-20251212-023652-731.jpg",markerAvatar: "", description: "", sheet: "" },
+    { username: "нагито", displayName: "Нагито Комаэда", password: "1111", color: "white", avatar: "",markerAvatar: "", description: "", sheet: "" },
+    { username: "миу", displayName: "Миу Ирума", password: "1111", color: "pink", avatar: "",markerAvatar: "", description: "", sheet: "" },
+    { username: "каэде", displayName: "Каэде Акаматсу", password: "1111", color: "yellow", avatar: "",markerAvatar: "", description: "", sheet: "" },
+    { username: "рантаро", displayName: "Рантаро Амами", password: "1111",  avatar: "https://i.postimg.cc/XqxgLf7X/IMG-20251212-024217-121.png",markerAvatar: "", description: `Падший паладин.
 
 В белоснежном королевстве, где магия — не дар, а закон, имя Стеллы Бетельгейм произносят, склоняя голову.
 Она — богиня магии, сияние знания, что подчинило себе разум и волю человечества. Её культ — это не вера, а строй: каждый ребёнок с детства учится различать «чистую» магию от «еретической», каждый взрослый живёт под взором храмов, что возвышаются над улицами, будто сторожевые башни.
@@ -210,8 +210,8 @@ const accounts = [
 Теперь Рантаро странствует по северным дорогам, скрываясь под белым плащом. Его копьё — это не инструмент веры, а напоминание о ней.
 И когда ветер поёт над ледяными равнинами, кажется, что он слышит шёпот самой Стеллы —
 или, может быть, самого себя, наконец ставшего живым.`, sheet: "https://i.postimg.cc/J44xn2Pw/IMG-20251212-024232-021.jpg" },
-    { username: "чихиро", displayName: "Чихиро Фуджисаки", password: "1111", color: "brown", avatar: "", description: "", sheet: "" },
-    { username: "кай", displayName: "Кай Монтего", password: "1111", color: "purple", avatar: "https://i.pinimg.com/474x/81/31/7f/81317f3efab2be3909ea95e53439b75c.jpg", description: `Амбициозный мошенник.
+    { username: "чихиро", displayName: "Чихиро Фуджисаки", password: "1111", color: "brown", avatar: "",markerAvatar: "", description: "", sheet: "" },
+    { username: "кай", displayName: "Кай Монтего", password: "1111", color: "purple", avatar: "https://i.pinimg.com/474x/81/31/7f/81317f3efab2be3909ea95e53439b75c.jpg",markerAvatar: "", description: `Амбициозный мошенник.
 
 Кай Монтего родился в семье известных актёров в эльфийском королевстве, где власть избирают мудрецы, леса бесконечны, а вера в Сириус является нормой, а не обязанностью. Его дом с детства был наполнен репетициями, голосами, инструментами и шумом сцены — он вырос в мире, где каждый говорит громче, чем думает, где важно не что ты чувствуешь, а как это выглядит со стороны.
 
@@ -228,7 +228,7 @@ const accounts = [
 Он согласился почти без размышлений, ощущая азарт, предвкушая громкие овации, которые услышат даже за пределами королевства.
 
 Он не знал, что организатор видел в нём удобную марионетку — слишком яркую, чтобы не заметили, и слишком зависимую от признания, чтобы отказаться. Теперь судьба Кая — больше не только театр. Это сцена, где цена спектакля — жизнь.`, sheet: "https://i.postimg.cc/pLyrSWTk/sheet7.jpg" },
-    { username: "кокичи", displayName: "Кокичи Ома", password: "1111", color: "violet", avatar: "https://i.postimg.cc/yxSZg0gm/IMG-20251212-030500-800.png", description: `Голос Обмана+
+    { username: "кокичи", displayName: "Кокичи Ома", password: "1111", color: "violet", avatar: "https://i.postimg.cc/yxSZg0gm/IMG-20251212-030500-800.png",markerAvatar: "", description: `Голос Обмана+
 
 Настоящее имя неизвестно.
 На сцене его знали под сотней масок, но имя Кокичи Ома он выбрал сам — в честь мертвого героя, которого никто, кроме него, не помнит.
@@ -240,7 +240,7 @@ const accounts = [
 
 Он лжёт, чтобы смешить. Он провоцирует, чтобы люди увидели себя. Он добр, но никогда прямо. Он обманщик — но не предатель.
 Для него ложь — кисть, а реальность — холст. И если придётся перевернуть мир, чтобы сделать его красивее — он не задумываясь это сделает.`, sheet: "https://i.postimg.cc/63pV37fD/IMG-20251212-024143-183.jpg" },
-    { username: "изуру", displayName: "Изуру Камукура", password: "1111", color: "gray", avatar: "https://i.postimg.cc/mkQrWjF2/IMG-20251212-025433-144.png", description: `Уединение. Осознание.
+    { username: "изуру", displayName: "Изуру Камукура", password: "1111", color: "gray", avatar: "https://i.postimg.cc/mkQrWjF2/IMG-20251212-025433-144.png",markerAvatar: "", description: `Уединение. Осознание.
 
 Изуру Камукура родился среди эльфов, но его происхождение тщательно скрыто. Ни одного подтверждённого факта о его семье, детстве или наставниках не существует.
 
@@ -255,7 +255,7 @@ const accounts = [
 Именем Изуру Камукура пользуется сам. Считается, что оно не настоящее. Личность до изоляции не установлена. Возраст не определён.
 
 Его цель неясна. Его путь не объясняется. Он просто идёт вперёд.`, sheet: "https://i.postimg.cc/4x4xjzfV/IMG-20251212-025454-723.jpg" },
-    { username: "монака", displayName: "Монака Това", password: "1111", color: "lightgreen", avatar: "https://i.postimg.cc/J4vp2Q57/IMG-20251212-025905-402.png", description: `Святое притворство:
+    { username: "монака", displayName: "Монака Това", password: "1111", color: "lightgreen", avatar: "https://i.postimg.cc/J4vp2Q57/IMG-20251212-025905-402.png",markerAvatar: "", description: `Святое притворство:
 
 Когда-то в глухой долине, за чёрными болотами и зловещим холмом стоял приют под названием Дом Милосердия Элании. Местные шептались, что дети туда попадают не по воле богов, и что сама земля вокруг приюта плачет ночью. Именно там, в дождливую ночь, была найдена крошечная девочка — наполовину эльфийка, с чёртами лица столь хрупкими, что она казалась игрушечной.
 Её назвали Монакой.
@@ -268,11 +268,11 @@ const accounts = [
 «Пока вы стареете и боитесь, я останусь маленькой. И дети меня запомнят».
 
 Один из жрецов, по странной жалости, не казнил её, а предложил исправление — направить её через путь служения. Монака согласилась… но только для того, чтобы стать жрецом, изучить силу веры и обратить её в оружие.`, sheet: "https://i.postimg.cc/6qZGXqjJ/Picsart-25-07-05-11-30-55-133-1.jpg" },
-    { username: "сония", displayName: "Сония Невермaйнд", password: "1111", color: "lightyellow", avatar: "", description: "", sheet: "" },
-    { username: "кируми", displayName: "Кируми Тоджо", password: "1111", color: "darkviolet", avatar: "", description: "", sheet: "" },
-    { username: "леон", displayName: "Леон Кувата", password: "1111", color: "orange", avatar: "", description: "", sheet: "" },
-    { username: "макото", displayName: "Макото Наэги", password: "1111", color: "lightbrown", avatar: "", description: "", sheet: "" },
-    { username: "монокума", displayName: "МОН0КУМА", password: "1111", color: "white", avatar: "", description: "", sheet: "" },
+    { username: "сония", displayName: "Сония Невермaйнд", password: "1111", color: "lightyellow", avatar: "",markerAvatar: "", description: "", sheet: "" },
+    { username: "кируми", displayName: "Кируми Тоджо", password: "1111", color: "darkviolet", avatar: "",markerAvatar: "", description: "", sheet: "" },
+    { username: "леон", displayName: "Леон Кувата", password: "1111", color: "orange", avatar: "",markerAvatar: "", description: "", sheet: "" },
+    { username: "макото", displayName: "Макото Наэги", password: "1111", color: "lightbrown", avatar: "",markerAvatar: "", description: "", sheet: "" },
+    { username: "монокума", displayName: "МОН0КУМА", password: "1111", color: "white", avatar: "https://i.postimg.cc/5tq95ymv/Monokuma-Illustration.webp",markerAvatar: "https://i.postimg.cc/2jXk7PnF/Ball-Monokuma-transparent-jpg.webp", description: "", sheet: "" },
   ];
 
 /* ================= UI helpers ================= */
@@ -382,11 +382,13 @@ function ensureMarkerElement(username, acc) {
   el.className = 'playerMarker';
   el.dataset.user = username;
   el.title = acc ? acc.displayName : username;
-  el.style.backgroundImage = acc && acc.avatar ? `url('${acc.avatar}')` : `radial-gradient(circle at 30% 30%, #fff 0, ${acc && acc.color ? acc.color : '#888'} 60%)`;
+  el.style.backgroundImage = acc && acc.markerAvatar ? `url('${acc.markerAvatar}')` : `radial-gradient(circle at 30% 30%, #fff 0, ${acc && acc.color ? acc.color : '#888'} 60%)`;
   if (acc && acc.avatar) {
   const avatarPopup = document.createElement('div');
   avatarPopup.className = 'markerAvatar';
   avatarPopup.style.backgroundImage = `url('${acc.avatar}')`;
+
+
   el.appendChild(avatarPopup);
 }
 
