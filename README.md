@@ -187,7 +187,7 @@ const accounts = [
     { username: "цумуги", displayName: "Цумуги Широгане", password: "1111", color: "blue", avatar: "https://i.postimg.cc/MKDL3Brk/IMG-20251212-023652-731.jpg",markerAvatar: "", description: "", sheet: "" },
     { username: "нагито", displayName: "Нагито Комаэда", password: "1111", color: "white", avatar: "",markerAvatar: "", description: "", sheet: "" },
     { username: "миу", displayName: "Миу Ирума", password: "1111", color: "pink", avatar: "",markerAvatar: "", description: "", sheet: "" },
-    { username: "каэде", displayName: "Каэде Акаматсу", password: "1111", color: "yellow", avatar: "",markerAvatar: "", description: "", sheet: "" },
+    { username: "каэде", displayName: "Каэде Акаматсу", password: "1111", color: "yellow", avatar: "",markerAvatar: "https://i.postimg.cc/13S8Z1sp/IMG-20260108-122721-302.png", description: "", sheet: "" },
     { username: "рантаро", displayName: "Рантаро Амами", password: "1111",  avatar: "https://i.postimg.cc/XqxgLf7X/IMG-20251212-024217-121.png",markerAvatar: "", description: `Падший паладин.
 
 В белоснежном королевстве, где магия — не дар, а закон, имя Стеллы Бетельгейм произносят, склоняя голову.
@@ -211,7 +211,7 @@ const accounts = [
 И когда ветер поёт над ледяными равнинами, кажется, что он слышит шёпот самой Стеллы —
 или, может быть, самого себя, наконец ставшего живым.`, sheet: "https://i.postimg.cc/J44xn2Pw/IMG-20251212-024232-021.jpg" },
     { username: "чихиро", displayName: "Чихиро Фуджисаки", password: "1111", color: "brown", avatar: "",markerAvatar: "", description: "", sheet: "" },
-    { username: "кай", displayName: "Кай Монтего", password: "1111", color: "purple", avatar: "https://i.pinimg.com/474x/81/31/7f/81317f3efab2be3909ea95e53439b75c.jpg",markerAvatar: "", description: `Амбициозный мошенник.
+    { username: "кай", displayName: "Кай Монтего", password: "1111", color: "purple", avatar: "https://i.postimg.cc/GhK4rS2J/IMG-20260108-122721-262.png",markerAvatar: "https://i.postimg.cc/Kjc0WHj9/IMG-20260108-122721-404.png", description: `Амбициозный мошенник.
 
 Кай Монтего родился в семье известных актёров в эльфийском королевстве, где власть избирают мудрецы, леса бесконечны, а вера в Сириус является нормой, а не обязанностью. Его дом с детства был наполнен репетициями, голосами, инструментами и шумом сцены — он вырос в мире, где каждый говорит громче, чем думает, где важно не что ты чувствуешь, а как это выглядит со стороны.
 
