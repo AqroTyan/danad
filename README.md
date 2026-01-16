@@ -270,7 +270,13 @@ const accounts = [
 Один из жрецов, по странной жалости, не казнил её, а предложил исправление — направить её через путь служения. Монака согласилась… но только для того, чтобы стать жрецом, изучить силу веры и обратить её в оружие.`, sheet: "https://i.postimg.cc/6qZGXqjJ/Picsart-25-07-05-11-30-55-133-1.jpg" },
     { username: "сония", displayName: "Сония Невермaйнд", password: "1111", color: "lightyellow", avatar: "",markerAvatar: "", description: "", sheet: "" },
     { username: "кируми", displayName: "Кируми Тоджо", password: "1111", color: "darkviolet", avatar: "",markerAvatar: "", description: "", sheet: "" },
-    { username: "леон", displayName: "Леон Кувата", password: "1111", color: "orange", avatar: "",markerAvatar: "", description: "", sheet: "" },
+    { username: "леон", displayName: "Леон Кувата", password: "1111", color: "orange", avatar: "https://i.postimg.cc/k5ZCxDYG/IMG-20260116-232420-319.png",markerAvatar: "https://i.postimg.cc/SK4Nnn5N/IMG-20260116-232420-592.png", description: "Благородный маг
+      
+      Леон Кувата родился в семье древнего человеческого рода, который веками служил магии и государству. С детства его обучали этикету, искусству и магическим практикам, ожидая, что он станет достойным наследником семейного имени. Несмотря на строгие рамки, Леон всегда сохранял жизнерадостный, острый ум и чувство юмора, что делало его популярным среди сверстников и наставников.
+
+Поступив в столичный университет магии, он блеснул талантом и умением сочетать теорию с практикой, быстро заслужив уважение профессоров. Благородство, воспитание и врождённая харизма позволили ему не только овладеть магией, но и обрести авторитет среди коллег и младших студентов.
+
+Став выпускником, Леон покинул университет, намереваясь использовать свои навыки и знания во благо людей и укрепление магического искусства, но при этом оставаясь верным духу приключений и исследовательской страсти, заложенной ещё в детстве.", sheet: "https://i.postimg.cc/kGmkcSQR/IMG-20260116-233738-319.jpg" },
     { username: "макото", displayName: "Макото Наэги", password: "1111", color: "lightbrown", avatar: "",markerAvatar: "", description: "", sheet: "" },
     { username: "монокума", displayName: "МОН0КУМА", password: "1111", color: "white", avatar: "https://i.postimg.cc/5tq95ymv/Monokuma-Illustration.webp",markerAvatar: "https://i.postimg.cc/2jXk7PnF/Ball-Monokuma-transparent-jpg.webp", description: "", sheet: "" },
   ];
