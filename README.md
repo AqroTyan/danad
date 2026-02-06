@@ -125,6 +125,26 @@
   font-size: 13px;
   color: #ff7777;
 }
+.bulletItem {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:#2b2b2b;
+  padding:8px 10px;
+  border-radius:6px;
+  margin-bottom:8px;
+  cursor:pointer;
+}
+.bulletEmoji {
+  font-size:22px;
+}
+.bulletDelete {
+  margin-left:auto;
+  cursor:pointer;
+  color:#f66;
+  font-weight:bold;
+}
+
   </style>
 </head>
 <body>
@@ -133,7 +153,7 @@
   <button onclick="openPage('home')" class="active" id="tab_home">Главная</button>
   <button onclick="openPage('map')" id="tab_map">Карта</button>
   <button onclick="openPage('info')" id="tab_info">Персонаж</button>
-  <button onclick="openPage('rules')" id="tab_rules">Правила</button>
+  <button onclick="openPage('bullets')" id="tab_bullets">Улики</button>
 </nav>
 
 <div class="page active" id="home">
@@ -208,6 +228,45 @@
       ⚠ новые правила могут быть добавлены в любой момент.
     </div>
 
+  </div>
+</div>
+<div class="page" id="bullets">
+  <h2>Пули правды</h2>
+
+  <button onclick="openAddBullet()" style="font-size:20px;padding:6px 12px;cursor:pointer;">
+    ➕ Добавить пулю
+  </button>
+
+  <div id="bulletsList" style="margin-top:15px;"></div>
+</div>
+
+<!-- Окно добавления / просмотра пули -->
+<div id="bulletModal" style="
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  align-items:center;
+  justify-content:center;
+  z-index:1000;
+">
+  <div style="
+    background:#222;
+    padding:20px;
+    width:90%;
+    max-width:400px;
+    border-radius:8px;
+  ">
+    <h3 id="bulletModalTitle">Новая пуля</h3>
+
+    <input id="bulletName" placeholder="Название" style="margin-bottom:8px;">
+    <textarea id="bulletDesc" placeholder="Описание / почему это улика" style="width:100%;height:80px;margin-bottom:8px;"></textarea>
+    <input id="bulletEmoji" placeholder="Эмодзи (например 🔫 🧠 📄)" style="margin-bottom:10px;">
+
+    <div style="display:flex;gap:10px;justify-content:flex-end;">
+      <button onclick="closeBulletModal()">Закрыть</button>
+      <button onclick="saveBullet()">Сохранить</button>
+    </div>
   </div>
 </div>
 
@@ -539,21 +598,14 @@ const accounts = [
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
 <script>
-/* =======================
-   CONFIG — вставь свои URL карт для этажей
-   Пример:
-   mapImages[1] = 'https://site.com/floor1.png';
-   mapImages[2] = 'https://site.com/floor2.png';
-   mapImages['b'] = 'https://site.com/basement.png';
-   Оставь пустые строки если хочешь вставить позже.
-   ======================= */
+
 const mapImages = {
-  1: "https://i.postimg.cc/CMfrDjLK/Znimok-ekrana-2025-12-12-222248.png",      // <- вставь ссылку на изображение первого этажа
-  2: "https://i.postimg.cc/3wBv6rC3/izobrazenie-2025-12-13-010749253.png",      // <- вставь ссылку на изображение второго этажа
-  b: "https://i.postimg.cc/pTSQr1nK/Znimok-ekrana-2025-12-12-230210.png"       // <- вставь ссылку на изображение подвала (ключ 'b' = basement)
+  1: "https://i.postimg.cc/CMfrDjLK/Znimok-ekrana-2025-12-12-222248.png",     
+  2: "https://i.postimg.cc/3wBv6rC3/izobrazenie-2025-12-13-010749253.png",      
+  b: "https://i.postimg.cc/pTSQr1nK/Znimok-ekrana-2025-12-12-230210.png"      
 };
 
-/* ============ Firebase init (твои данные уже стояли) ============ */
+/* ============ Firebase init  ============ */
 const firebaseConfig = {
   apiKey: "AIzaSyBiHWlMDeUv5FmPh4Aqv7aKCGHFbco5YIM",
   authDomain: "dandd-592cb.firebaseapp.com",
@@ -811,6 +863,92 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
+  /* ================= ПУЛИ ПРАВДЫ ================= */
+
+let editingBulletId = null;
+
+function openAddBullet() {
+  if (!currentUser) {
+    alert("Войдите в аккаунт");
+    return;
+  }
+  editingBulletId = null;
+  document.getElementById('bulletModalTitle').innerText = "Новая пуля";
+  document.getElementById('bulletName').value = "";
+  document.getElementById('bulletDesc').value = "";
+  document.getElementById('bulletEmoji').value = "";
+  document.getElementById('bulletModal').style.display = "flex";
+}
+
+function closeBulletModal() {
+  document.getElementById('bulletModal').style.display = "none";
+}
+
+function saveBullet() {
+  const name = bulletName.value.trim();
+  const desc = bulletDesc.value.trim();
+  const emoji = bulletEmoji.value.trim() || "🔍";
+
+  if (!name) {
+    alert("Введите название");
+    return;
+  }
+
+  const ref = db.ref("bullets/" + currentUser).push();
+  ref.set({
+    name,
+    desc,
+    emoji
+  });
+
+  closeBulletModal();
+}
+
+function loadBullets() {
+  if (!currentUser) return;
+  const list = document.getElementById('bulletsList');
+  list.innerHTML = "";
+
+  db.ref("bullets/" + currentUser).on("value", snap => {
+    list.innerHTML = "";
+    const data = snap.val();
+    if (!data) return;
+
+    Object.entries(data).forEach(([id, bullet]) => {
+      const div = document.createElement("div");
+      div.className = "bulletItem";
+
+      div.innerHTML = `
+        <div class="bulletEmoji">${bullet.emoji}</div>
+        <div>${bullet.name}</div>
+        <div class="bulletDelete">➖</div>
+      `;
+
+      div.onclick = () => {
+        bulletName.value = bullet.name;
+        bulletDesc.value = bullet.desc;
+        bulletEmoji.value = bullet.emoji;
+        document.getElementById('bulletModalTitle').innerText = "Пуля правды";
+        document.getElementById('bulletModal').style.display = "flex";
+      };
+
+      div.querySelector(".bulletDelete").onclick = (e) => {
+        e.stopPropagation();
+        db.ref("bullets/" + currentUser + "/" + id).remove();
+      };
+
+      list.appendChild(div);
+    });
+  });
+}
+
+/* подгружаем пули при входе */
+const originalLogin = login;
+login = function () {
+  originalLogin();
+  setTimeout(loadBullets, 300);
+};
+
 
 /* ============ Переменные состояния ============ */
 let currentUser = null;      // username
