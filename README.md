@@ -153,6 +153,7 @@
   <button onclick="openPage('home')" class="active" id="tab_home">Главная</button>
   <button onclick="openPage('map')" id="tab_map">Карта</button>
   <button onclick="openPage('info')" id="tab_info">Персонаж</button>
+  <button onclick="openPage('rules')" id="tab_rules">Правила</button>
   <button onclick="openPage('bullets')" id="tab_bullets">Улики</button>
 </nav>
 
