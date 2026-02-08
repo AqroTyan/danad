@@ -620,4 +620,3 @@ refreshMarkersVisibility();
 </script>
 </body>
 </html>
-</>
