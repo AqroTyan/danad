@@ -341,4 +341,283 @@ const accounts = [
 
 В возрасте, не указанном ни в одном эльфийском реестре, он ушёл в горы — один. Причины ухода не названы. Добровольное изгнание, без следов и записей.
 
-В течение 17 лет находился в полной изоляции. Единственное, что известно о его деятельности в этот период — фрагментарные находки: философские заметки без автора, рисунки из символов, с
+В течение 17 лет находился в полной изоляции. Единственное, что известно о его деятельности в этот период — фрагментарные находки: философские заметки без автора, рисунки из символов, совпадающих с древними молитвами, выжженные на камне круги.
+
+Первое появление в обществе — случайное. Он спас умирающего ребёнка, не назвав имени, и исчез до рассвета. Потом снова — в разрушенном храме, где тела лежали нетронутыми, а стены были очищены.
+
+Он не упоминает богов, но его заклинания работают. Он говорит редко, чаще — наблюдает. Не вступает в конфликты, если в этом нет необходимости. Его вера — не в существо, а в порядок или хаос как природное явление.
+
+Именем Изуру Камукура пользуется сам. Считается, что оно не настоящее. Личность до изоляции не установлена. Возраст не определён.
+
+Его цель неясна. Его путь не объясняется. Он просто идёт вперёд.`, sheet: "https://i.postimg.cc/4x4xjzfV/IMG-20251212-025454-723.jpg" },
+    { username: "монака", displayName: "Монака Това", password: "9163", color: "lightgreen", avatar: "https://i.postimg.cc/J4vp2Q57/IMG-20251212-025905-402.png",markerAvatar: "", description: `Святое притворство:
+
+Когда-то в глухой долине, за чёрными болотами и зловещим холмом стоял приют под названием Дом Милосердия Элании. Местные шептались, что дети туда попадают не по воле богов, и что сама земля вокруг приюта плачет ночью. Именно там, в дождливую ночь, была найдена крошечная девочка — наполовину эльфийка, с чёртами лица столь хрупкими, что она казалась игрушечной.
+Её назвали Монакой.
+С юных лет она проявляла необычную проницательность. Она могла рассказать, кто из воспитателей лжёт, а кто — ворует еду. Но, вместо того чтобы быть благодарной, Монака начала играть с их слабостями. Вскоре в приюте вспыхнули конфликты, начались доносы, исчезновения… и пожары. Никто не мог доказать, что это она, но все знали — всё началось с Монаки.
+В 10 лет она уже командовала младшими детьми как предводительница маленькой секты, говоря, что взрослые не настоящие, а миром должны править дети, свободные от морали.
+Однажды ночью она устроила массовый побег из приюта, уведя за собой целую группу посвящённых.
+
+Монака участвовала в ограблениях, поджогах и подстрекательстве к убийствам, прикрываясь маской невинного дитя. Она использовала священные символы, чтобы убедить крестьян, что их обманывают местные жрецы, а затем развращала паству, создавая новую веру — культ детской власти.
+Когда орден Пелора попытался остановить её, она сдалась без боя, улыбаясь, и прошептала:
+«Пока вы стареете и боитесь, я останусь маленькой. И дети меня запомнят».
+
+Один из жрецов, по странной жалости, не казнил её, а предложил исправление — направить её через путь служения. Монака согласилась… но только для того, чтобы стать жрецом, изучить силу веры и обратить её в оружие.`, sheet: "https://i.postimg.cc/6qZGXqjJ/Picsart-25-07-05-11-30-55-133-1.jpg" },
+    { username: "сония", displayName: "Сония Невермaйнд", password: "2479", color: "lightyellow", avatar: "https://i.postimg.cc/QM2Lbkys/IMG-20260122-002814-353.png",markerAvatar: "https://i.postimg.cc/fy3wLTF5/IMG-20260122-002811-777.png", description: "Запретное знание   Сония Невермайнд с рождения была предназначена стать символом эльфийского государства. Парламент Мудрецов существовал почти с момента сотворения королевства, и корона всегда была знаком преемственности, а не инструментом власти. Сонию готовили именно к этой роли: быть лицом государства, хранительницей традиций, точкой стабильности в мире, где даже леса меняются медленно, но неизбежно.Она была образованной, дисциплинированной и искренне доброй. Сония верила в законы, уважала решения парламента и никогда не ставила под сомнение саму систему. Однако её личный интерес лежал глубже официальных учений. С юности она увлекалась оккультизмом — не как запретным искусством, а как формой познания мира. Древние ритуалы, забытые символы, крайние философские течения, баланс между жизнью и смертью — всё это интересовало её как способ понять, где проходит граница дозволенного и необходимого.Её тянуло к экстремальным идеям не из жажды разрушения, а из желания проверить пределы: может ли порядок существовать без крайностей, и что происходит, когда ради сохранения жизни приходится идти на шаг за грань привычной морали. При этом Сония никогда не нарушала законов — она изучала, а не практиковала, наблюдала, а не действовала. Для парламента она оставалась идеальной кандидатурой: умной, сдержанной, надёжной.Именно это сочетание — абсолютная лояльность и интерес к запретному — привело её к открытию, которое не должно было касаться будущей королевы. Задолго до коронации Сония узнала о существовании механизма, скрытого за фасадом стабильности: системы, в которой крайние меры применялись тайно, во имя сохранения баланса мира. Убийственная игра была частью этой системы — не развлечением, а инструментом.Сония узнала об этом до того, как оказалась в игре.И поняла, что если она станет королевой, это знание сделает её либо лгуньей, либо соучастницей.Она приняла решение ещё тогда — молча, без свидетелей. Коронация должна была состояться, но не состоялась. Вместо трона она оказалась среди участников игры, единственная, кто понимал, что происходит и почему. Она не сопротивлялась и не пыталась сбежать, потому что знала: её присутствие — часть уже запущенного процесса.Сония остаётся доброй и сострадательной. Она помогает другим, поддерживает слабых и не поощряет насилие. Но внутри она несёт тяжёлое знание: иногда мир держится не на законах и не на символах, а на том, что кто-то соглашается заплатить цену молча.Корона не была утрачена.Она была отложена — вместе с правдой, которую нельзя было произнести вслух. ", sheet: "https://i.postimg.cc/s2f6WVCj/Picsart-26-01-22-14-22-32-655.jpg" },
+    { username: "кируми", displayName: "Кируми Тоджо", password: "3508", color: "darkviolet", avatar: "",markerAvatar: "", description: "", sheet: "" },
+    { username: "леон", displayName: "Леон Кувата", password: "4682", color: "orange", avatar: "https://i.postimg.cc/k5ZCxDYG/IMG-20260116-232420-319.png",markerAvatar: "https://i.postimg.cc/SK4Nnn5N/IMG-20260116-232420-592.png", description: "Благородный маг.      Леон Кувата родился в семье древнего человеческого рода, который веками служил магии и государству. С детства его обучали этикету, искусству и магическим практикам, ожидая, что он станет достойным наследником семейного имени. Несмотря на строгие рамки, Леон всегда сохранял жизнерадостный, острый ум и чувство юмора, что делало его популярным среди сверстников и наставников. Поступив в столичный университет магии, он блеснул талантом и умением сочетать теорию с практикой, быстро заслужив уважение профессоров. Благородство, воспитание и врождённая харизма позволили ему не только овладеть магией, но и обрести авторитет среди коллег и младших студентов. Став выпускником, Леон покинул университет, намереваясь использовать свои навыки и знания во благо людей и укрепление магического искусства, но при этом оставаясь верным духу приключений и исследовательской страсти, заложенной ещё в детстве.", sheet: "https://i.postimg.cc/kGmkcSQR/IMG-20260116-233738-319.jpg" },
+    { username: "макото", displayName: "Макото Наэги", password: "5790", color: "lightbrown", avatar: "",markerAvatar: "", description: "", sheet: "" },
+    { username: "монокума", displayName: "МОН0КУМА", password: "8742", color: "white", avatar: "https://i.postimg.cc/5tq95ymv/Monokuma-Illustration.webp",markerAvatar: "https://i.postimg.cc/2jXk7PnF/Ball-Monokuma-transparent-jpg.webp", description: "", sheet: "" },
+  ];
+
+/* ================= UI helpers ================= */
+function setViewFloorLabel() {
+  const lbl = document.getElementById('viewFloorLabel');
+  lbl.innerText = viewFloor === 'b' ? 'Подвал' : (viewFloor === 1 ? '1 этаж' : '2 этаж');
+  document.querySelectorAll('.floorBtn').forEach(b => b.classList.remove('active'));
+  if (viewFloor === 1) document.getElementById('view_floor_1').classList.add('active');
+  else if (viewFloor === 2) document.getElementById('view_floor_2').classList.add('active');
+  else document.getElementById('view_floor_b').classList.add('active');
+}
+function setMyFloorLabel() {
+  const lbl = document.getElementById('myFloorLabel');
+  lbl.innerText = myFloor === null ? 'не выбран' : (myFloor === 'b' ? 'Подвал' : (myFloor === 1 ? '1' : '2'));
+}
+
+/* ================= Floor buttons ================= */
+document.getElementById('view_floor_1').addEventListener('click', () => { viewFloor = 1; applyMapBackground(); setViewFloorLabel(); refreshMarkersVisibility(); });
+document.getElementById('view_floor_2').addEventListener('click', () => { viewFloor = 2; applyMapBackground(); setViewFloorLabel(); refreshMarkersVisibility(); });
+document.getElementById('view_floor_b').addEventListener('click', () => { viewFloor = 'b'; applyMapBackground(); setViewFloorLabel(); refreshMarkersVisibility(); });
+
+document.getElementById('set_floor_1').addEventListener('click', () => { if (!currentUser) return alert('Войдите в аккаунт'); setMyFloorForUser(1); });
+document.getElementById('set_floor_2').addEventListener('click', () => { if (!currentUser) return alert('Войдите в аккаунт'); setMyFloorForUser(2); });
+document.getElementById('set_floor_b').addEventListener('click', () => { if (!currentUser) return alert('Войдите в аккаунт'); setMyFloorForUser('b'); });
+
+/* ================= Map background (image overlay) ================= */
+function applyMapBackground() {
+  const img = mapImages[viewFloor] || '';
+  if (img) {
+    mapArea.style.backgroundImage = `url('${img}')`;
+    mapArea.style.backgroundSize = 'contain';
+    mapArea.style.backgroundRepeat = 'no-repeat';
+    mapArea.style.backgroundPosition = 'center';
+  } else {
+    mapArea.style.backgroundImage = '';
+    mapArea.style.backgroundColor = '#0f0f0f';
+  }
+}
+
+/* ================= Pan / Drag (desktop and touch) ================= */
+function updateMapTransform() {
+  mapArea.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+}
+
+/* Mouse */
+mapWrapper.addEventListener('mousedown', (e) => {
+  // only start dragging if clicked on empty space or background (not on marker)
+  if (e.target.classList.contains('playerMarker')) return;
+  isDragging = true;
+  dragStartX = e.clientX;
+  dragStartY = e.clientY;
+  startOffsetX = offsetX;
+  startOffsetY = offsetY;
+  mapWrapper.style.cursor = 'grabbing';
+});
+window.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+  const dx = e.clientX - dragStartX;
+  const dy = e.clientY - dragStartY;
+  offsetX = startOffsetX + dx;
+  offsetY = startOffsetY + dy;
+  updateMapTransform();
+});
+window.addEventListener('mouseup', () => {
+  if (isDragging) {
+    isDragging = false;
+    mapWrapper.style.cursor = 'default';
+  }
+});
+
+/* Touch */
+mapWrapper.addEventListener('touchstart', (ev) => {
+  if (ev.touches.length === 1) {
+    const t = ev.touches[0];
+    isDragging = true;
+    dragStartX = t.clientX;
+    dragStartY = t.clientY;
+    startOffsetX = offsetX;
+    startOffsetY = offsetY;
+  }
+});
+mapWrapper.addEventListener('touchmove', (ev) => {
+  if (!isDragging || ev.touches.length !== 1) return;
+  const t = ev.touches[0];
+  const dx = t.clientX - dragStartX;
+  const dy = t.clientY - dragStartY;
+  offsetX = startOffsetX + dx;
+  offsetY = startOffsetY + dy;
+  updateMapTransform();
+});
+mapWrapper.addEventListener('touchend', () => { isDragging = false; });
+
+/* ================= Marker handling (realtime) ================= */
+
+/*
+ Structure in DB:
+ positions: {
+   username1: { x: 123, y: 234, floor: 1 },
+   username2: { x: 400, y: 500, floor: 'b' },
+   ...
+ }
+*/
+
+function ensureMarkerElement(username, acc) {
+  if (markers[username]) return markers[username];
+  const el = document.createElement('div');
+  el.className = 'playerMarker';
+  el.dataset.user = username;
+  el.title = acc ? acc.displayName : username;
+  el.style.backgroundImage = acc && acc.markerAvatar ? `url('${acc.markerAvatar}')` : `radial-gradient(circle at 30% 30%, #fff 0, ${acc && acc.color ? acc.color : '#888'} 60%)`;
+  if (acc && acc.avatar) {
+  const avatarPopup = document.createElement('div');
+  avatarPopup.className = 'markerAvatar';
+  avatarPopup.style.backgroundImage = `url('${acc.avatar}')`;
+
+
+  el.appendChild(avatarPopup);
+}
+
+  // click on marker -> show profile in info page
+  
+  mapArea.appendChild(el);
+  markers[username] = el;
+  return el;
+}
+
+/* Listen to all positions changes in realtime */
+const positionsRef = db.ref('positions');
+positionsRef.on('value', (snap) => {
+  const data = snap.val() || {};
+  // update markers or create them
+  Object.keys(data).forEach(username => {
+    const pos = data[username];
+    const acc = accounts.find(a => a.username === username);
+    const el = ensureMarkerElement(username, acc);
+    // place marker only if floor matches viewFloor
+    if (pos && pos.x != null && pos.y != null) {
+      el.style.left = pos.x + 'px';
+      el.style.top = pos.y + 'px';
+      el.dataset.floor = pos.floor ?? 1;
+    } else {
+      el.style.left = '150px';
+      el.style.top = '150px';
+      el.dataset.floor = pos && pos.floor ? pos.floor : 1;
+    }
+    // visibility handled separately
+  });
+  // also ensure markers exist for accounts that may not have DB entry yet
+  accounts.forEach(a => {
+    if (!markers[a.username]) ensureMarkerElement(a.username, a);
+  });
+  refreshMarkersVisibility();
+});
+
+/* Refresh visibility according to viewFloor (show only markers whose stored floor == viewFloor) */
+function refreshMarkersVisibility() {
+  Object.keys(markers).forEach(username => {
+    const el = markers[username];
+    const userFloor = el.dataset.floor || 1;
+    // convert to comparable values: 'b' for basement
+    const matches = (String(userFloor) === String(viewFloor));
+    el.style.display = matches ? 'block' : 'none';
+  });
+}
+
+/* Save position for current user (x,y) and maintain floor (if not set yet, use myFloor or 1) */
+function savePositionForCurrentUser(x, y, floor = null) {
+  if (!currentUser) return;
+  // determine floor: use provided floor, else existing myFloor, else 1
+  const realFloor = (floor !== null && floor !== undefined) ? floor : (myFloor !== null ? myFloor : 1);
+  db.ref('positions/' + currentUser).set({ x: Math.round(x), y: Math.round(y), floor: realFloor });
+}
+
+/* Set myFloor for current user (update DB positions/currentUser.floor preserving x,y if exist) */
+function setMyFloorForUser(newFloor) {
+  if (!currentUser) return;
+  const pRef = db.ref('positions/' + currentUser);
+  pRef.once('value').then(snap => {
+    const cur = snap.val() || {};
+    const x = cur.x != null ? cur.x : 150;
+    const y = cur.y != null ? cur.y : 150;
+    pRef.set({ x, y, floor: newFloor });
+    myFloor = newFloor;
+    setMyFloorLabel();
+    // If the player moved floors, optionally hide their marker on other floors (handled by realtime listener)
+    refreshMarkersVisibility();
+  });
+}
+
+/* ================= Click on map -> place marker for currentUser with coords adjusted for pan ================= */
+mapWrapper.addEventListener('click', function(e) {
+  // if clicked on marker, ignore (marker handles click)
+  if (e.target.classList.contains('playerMarker')) return;
+  if (!currentUser) { alert('Войдите в аккаунт чтобы перемещаться'); return; }
+  const rect = mapWrapper.getBoundingClientRect();
+  // map coordinate = mouse position inside wrapper minus current offset (pan)
+  const x = e.clientX - rect.left - offsetX;
+  const y = e.clientY - rect.top  - offsetY;
+  savePositionForCurrentUser(x, y); // uses myFloor if set
+});
+
+/* ================= Login / UI ================= */
+function openPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(page).classList.add('active');
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab_' + page).classList.add('active');
+}
+
+function login() {
+  const log = document.getElementById('login_input').value.trim();
+  const pass = document.getElementById('pass_input').value.trim();
+  const acc = accounts.find(a => a.username === log && a.password === pass);
+  if (!acc) {
+    document.getElementById('login_status').style.color = '#f55';
+    document.getElementById('login_status').innerText = "Неверные данные";
+    return;
+  }
+  currentUser = acc.username;
+  // read user's stored floor to update myFloor var
+  db.ref('positions/' + currentUser).once('value').then(snap => {
+    const pos = snap.val();
+    myFloor = pos && pos.floor !== undefined ? pos.floor : null;
+    setMyFloorLabel();
+  });
+  document.getElementById('logo').innerText = acc.displayName;
+  document.getElementById('infoBox').innerText = `Вы вошли как: ${acc.displayName}`;
+  document.getElementById('avatarBox').innerHTML = acc.avatar ? `<img src='${acc.avatar}' alt='Аватар' style="max-width:100%;">` : '';
+  document.getElementById('descriptionBox').innerText = acc.description || '';
+  document.getElementById('characterSheet').innerHTML = acc.sheet ? `<img src='${acc.sheet}' alt='Лист персонажа'>` : '';
+  document.getElementById('login_status').style.color = '#5f5';
+  document.getElementById('login_status').innerText = "Успешный вход";
+  openPage('map');
+  // make sure view label and background updated
+  setViewFloorLabel(); setMyFloorLabel(); applyMapBackground();
+  // load markers (listener already set)
+}
+
+/* ================= Init UI ================= */
+setViewFloorLabel();
+setMyFloorLabel();
+applyMapBackground();
+
+/* Ensure markers for all existing accounts are created even before DB has data */
+accounts.forEach(a => ensureMarkerElement(a.username, a));
+
+/* On first load, refresh markers visibility */
+refreshMarkersVisibility();
+
+</script>
+</body>
+</html>
+</>
