@@ -893,7 +893,7 @@ const markers = {};
 /* Аккаунты — оставил твои данные, можно редактировать */
 const accounts = [
     { username: "цумуги", displayName: "Цумуги Широгане", password: "0387", color: "blue", avatar: "https://i.postimg.cc/MKDL3Brk/IMG-20251212-023652-731.jpg",markerAvatar: "", description: "", sheet: "" },
-    { username: "нагито", displayName: "Нагито Комаэда", password: "1492", color: "white", avatar: "",markerAvatar: "", description: "", sheet: "" },
+    { username: "нагито", displayName: "Нагито Комаэда", password: "1492", color: "white", avatar: "https://i.postimg.cc/1369x3DX/IMG-20260212-224508-534.png",markerAvatar: "", description: "", sheet: "" },
     { username: "миу", displayName: "Миу Ирума", password: "2750", avatar: "https://i.postimg.cc/pXPP3DMm/IMG-20260207-215033-607.jpg",markerAvatar: "https://i.postimg.cc/PJQTPqYt/IMG-20260207-215010-115.png", description: `Демоничный колдун.                                                                                                                                                      
      миу родилась человеком в бедной семье ремесленников.
       С юности отличалась дерзким характером и желанием доказать своё превосходство над другими.
@@ -960,7 +960,7 @@ const accounts = [
 
 Он лжёт, чтобы смешить. Он провоцирует, чтобы люди увидели себя. Он добр, но никогда прямо. Он обманщик — но не предатель.
 Для него ложь — кисть, а реальность — холст. И если придётся перевернуть мир, чтобы сделать его красивее — он не задумываясь это сделает.`, sheet: "https://i.postimg.cc/63pV37fD/IMG-20251212-024143-183.jpg" },
-    { username: "изуру", displayName: "Изуру Камукура", password: "8046", color: "gray", avatar: "https://i.postimg.cc/mkQrWjF2/IMG-20251212-025433-144.png",markerAvatar: "", description: `Уединение. Осознание.
+    { username: "изуру", displayName: "Изуру Камукура", password: "8046", color: "gray", avatar: "https://i.postimg.cc/RVZ6zK07/IMG-20260213-000428-127.png",markerAvatar: "", description: `Уединение. Осознание.
 
 Изуру Камукура родился среди эльфов, но его происхождение тщательно скрыто. Ни одного подтверждённого факта о его семье, детстве или наставниках не существует.
 
